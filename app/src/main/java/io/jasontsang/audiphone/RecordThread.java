@@ -1,4 +1,4 @@
-package com.guoguang.audiphone;
+package io.jasontsang.audiphone;
 
 import android.media.AudioFormat;
 import android.media.AudioManager;
