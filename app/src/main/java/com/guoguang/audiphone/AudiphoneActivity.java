@@ -1,5 +1,6 @@
 package com.guoguang.audiphone;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -17,12 +18,14 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar;
+import com.tbruyelle.rxpermissions.RxPermissions;
 
 import net.qiujuer.genius.widget.GeniusSeekBar;
 
 import java.lang.reflect.Method;
 
 import es.claucookie.miniequalizerlibrary.EqualizerView;
+import rx.functions.Action1;
 
 /**
  * Created by jasontsang on 2/29/16.
@@ -62,7 +65,7 @@ public class AudiphoneActivity extends AppCompatActivity {
         try {
             equalizer = new Equalizer(0, 0);
             bassBoost = new BassBoost(0, 0);
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -83,16 +86,16 @@ public class AudiphoneActivity extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(recordThread == null) {
+                if (recordThread == null) {
                     recordThread = new RecordThread();
                     recordThread.start();
                     equalizerView.animateBars();
                     equalizerView.setVisibility(View.VISIBLE);
-                    if(equalizer != null) {
+                    if (equalizer != null) {
                         equalizer.release();
                         equalizer = null;
                     }
-                    if(bassBoost != null) {
+                    if (bassBoost != null) {
                         bassBoost.release();
                         bassBoost = null;
                     }
@@ -101,7 +104,7 @@ public class AudiphoneActivity extends AppCompatActivity {
                         equalizer.setEnabled(true);
                         bassBoost = new BassBoost(0, recordThread.getAudioSessionId());
                         bassBoost.setEnabled(true);
-                    }catch (Exception e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                     initEqualizer();
@@ -112,11 +115,11 @@ public class AudiphoneActivity extends AppCompatActivity {
         stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(bassBoost != null) {
+                if (bassBoost != null) {
                     bassBoost.release();
                     bassBoost = null;
                 }
-                if(equalizer != null) {
+                if (equalizer != null) {
                     equalizer.release();
                     equalizer = null;
                 }
@@ -140,10 +143,10 @@ public class AudiphoneActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 changeMic();
-                if(recordThread == null) {
+                if (recordThread == null) {
                     recordThread = new RecordThread();
                     recordThread.start();
-                }else {
+                } else {
                     recordThread.restart();
                 }
             }
@@ -213,9 +216,9 @@ public class AudiphoneActivity extends AppCompatActivity {
         compatibility.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(newDevice) {
+                if (newDevice) {
                     newDevice = false;
-                }else {
+                } else {
                     newDevice = true;
                 }
 
@@ -223,12 +226,25 @@ public class AudiphoneActivity extends AppCompatActivity {
 
                 changeMic();
 
-                if(recordThread == null) {
+                if (recordThread == null) {
                     recordThread = new RecordThread();
                     recordThread.start();
-                }else {
+                } else {
                     recordThread.restart();
                 }
+            }
+        });
+
+        new RxPermissions(this).request(Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH, Manifest.permission.RECORD_AUDIO, Manifest.permission.MODIFY_AUDIO_SETTINGS)
+        .subscribe(new Action1<Boolean>() {
+            @Override
+            public void call(Boolean granted) {
+
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+
             }
         });
     }
