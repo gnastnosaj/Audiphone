@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:genius="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="@string/app_name"
+            android:textSize="24sp"
+            android:textColor="@color/md_grey_900"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/md_grey_300"></RelativeLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <net.qiujuer.genius.widget.GeniusButton
+                android:layout_width="wrap_content"
+                android:layout_height="52dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:text="@string/start"
+                android:id="@+id/start"
+                genius:g_theme="@array/ScubaBlue"
+                genius:g_cornerRadius="5dp"
+                genius:g_touchEffect="move" />
+            <net.qiujuer.genius.widget.GeniusButton
+                android:layout_width="wrap_content"
+                android:layout_height="52dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:text="@string/stop"
+                android:id="@+id/stop"
+                genius:g_theme="@array/Titanium"
+                genius:g_cornerRadius="5dp"
+                genius:g_touchEffect="move" />
+            <net.qiujuer.genius.widget.GeniusButton
+                android:layout_width="wrap_content"
+                android:layout_height="52dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:text="@string/exit"
+                android:id="@+id/exit"
+                genius:g_theme="@array/LuciteGreen"
+                genius:g_cornerRadius="5dp"
+                genius:g_touchEffect="move" />
+        </LinearLayout>
+
+        <TextView
+            android:text="@string/volume"
+            android:textSize="24sp"
+            android:textColor="@color/md_grey_900"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="center_vertical" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/md_grey_300"></RelativeLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+            <net.qiujuer.genius.widget.GeniusButton
+                android:layout_width="wrap_content"
+                android:layout_height="52dp"
+                android:layout_margin="8dp"
+                android:text="@string/mic"
+                android:id="@+id/mic"
+                genius:g_theme="@array/StrawberryIce"
+                genius:g_cornerRadius="5dp"
+                genius:g_touchEffect="move" />
+            <net.qiujuer.genius.widget.GeniusSeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                genius:g_max="100"
+                genius:g_min="0"
+                genius:g_scrubberStroke="2dp"
+                genius:g_theme="@array/ScubaBlue"
+                genius:g_thumbSize="8dp"
+                genius:g_touchSize="12dp"
+                genius:g_trackStroke="2dp"
+                genius:g_value="60" />
+        </LinearLayout>
+
+        <TextView
+            android:text="@string/env"
+            android:textSize="24sp"
+            android:textColor="@color/md_grey_900"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="center_vertical" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/md_grey_300"></RelativeLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <net.qiujuer.genius.widget.GeniusButton
+                android:layout_width="wrap_content"
+                android:layout_height="52dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:text="@string/standard"
+                android:id="@+id/standard"
+                genius:g_theme="@array/ScubaBlue"
+                genius:g_cornerRadius="5dp"
+                genius:g_touchEffect="move" />
+            <net.qiujuer.genius.widget.GeniusButton
+                android:layout_width="wrap_content"
+                android:layout_height="52dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:text="@string/quiet"
+                android:id="@+id/quiet"
+                genius:g_theme="@array/LavenderHerb"
+                genius:g_cornerRadius="5dp"
+                genius:g_touchEffect="move" />
+            <net.qiujuer.genius.widget.GeniusButton
+                android:layout_width="wrap_content"
+                android:layout_height="52dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:text="@string/meeting"
+                android:id="@+id/meeting"
+                genius:g_theme="@array/ClassicBlue"
+                genius:g_cornerRadius="5dp"
+                genius:g_touchEffect="move" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:text="@string/equalizer"
+                android:textSize="24sp"
+                android:textColor="@color/md_grey_900"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <es.claucookie.miniequalizerlibrary.EqualizerView
+                android:id="@+id/equalizer_view"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="16dp"
+                android:visibility="invisible"
+                custom:foregroundColor="@color/StrawberryIce_Primary"
+                custom:animDuration="3500"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/equalizer"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:text="@string/advance"
+            android:textSize="24sp"
+            android:textColor="@color/md_grey_900"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="center_vertical" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/md_grey_300"></RelativeLayout>
+
+        <net.qiujuer.genius.widget.GeniusButton
+            android:layout_width="wrap_content"
+            android:layout_height="52dp"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:text="@string/compatibility"
+            android:id="@+id/compatibility"
+            genius:g_theme="@array/Sandstone"
+            genius:g_cornerRadius="5dp"
+            genius:g_touchEffect="move" />
+
+    </LinearLayout>
+</ScrollView>

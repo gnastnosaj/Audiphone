@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">手机助听器</string>
+    <string name="start">开始</string>
+    <string name="stop">结束</string>
+    <string name="exit">退出</string>
+    <string name="volume">音量</string>
+    <string name="mic">切换麦克风</string>
+    <string name="env">情景模式</string>
+    <string name="standard">标准</string>
+    <string name="quiet">安静</string>
+    <string name="meeting">会议</string>
+    <string name="equalizer">均衡器</string>
+    <string name="advance">高级</string>
+    <string name="compatibility">设备兼容性调整</string>
+</resources>
