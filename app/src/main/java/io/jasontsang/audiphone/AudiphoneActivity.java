@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.guoguang.audiphone.R;
+import io.jasontsang.audiphone.R;
 import com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
