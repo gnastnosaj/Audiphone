@@ -21,7 +21,17 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="1px"
+            android:background="@color/md_grey_300"></RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/ad_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1px"
             android:background="@color/md_grey_300"></RelativeLayout>
 
         <LinearLayout
@@ -71,7 +81,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="1px"
             android:background="@color/md_grey_300"></RelativeLayout>
 
         <LinearLayout
@@ -114,7 +124,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="1px"
             android:background="@color/md_grey_300"></RelativeLayout>
 
         <LinearLayout
@@ -196,7 +206,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="1px"
             android:background="@color/md_grey_300"></RelativeLayout>
 
         <net.qiujuer.genius.widget.GeniusButton

@@ -10,16 +10,20 @@ import android.media.audiofx.BassBoost;
 import android.media.audiofx.Equalizer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import io.jasontsang.audiphone.R;
 import com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar;
 import com.tbruyelle.rxpermissions.RxPermissions;
+import com.wandoujia.ads.sdk.Ads;
 
 import net.qiujuer.genius.widget.GeniusSeekBar;
 
@@ -38,6 +42,8 @@ public class AudiphoneActivity extends AppCompatActivity {
     VolumeReceiver volumeReceiver;
     Equalizer equalizer;
     BassBoost bassBoost;
+
+    FrameLayout adWrapper;
 
     Button start;
     Button stop;
@@ -61,6 +67,29 @@ public class AudiphoneActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_audiphone);
+
+        adWrapper = (FrameLayout) findViewById(R.id.ad_wrapper);
+        new RxPermissions(this).request(Manifest.permission.READ_PHONE_STATE).subscribe(new Action1<Boolean>() {
+            @Override
+            public void call(Boolean grant) {
+                if (grant) {
+                    try {
+                        Ads.init(AudiphoneActivity.this, "100048054", "b25704d7c3184e5f36e65b5cf941ec83");
+                        Ads.preLoad("dc80c0c4318fc7994e9f82a157556903", Ads.AdFormat.banner);
+                        View bannerAdView = Ads.createBannerView(AudiphoneActivity.this, "dc80c0c4318fc7994e9f82a157556903");
+                        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        adWrapper.addView(bannerAdView, layoutParams);
+                    } catch (Exception e) {
+                        Log.e("AudiphoneActivity", "wandoujia ad error", e);
+                    }
+                }
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                Log.e("AudiphoneActivity", "wandoujia ad error", throwable);
+            }
+        });
 
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         try {
