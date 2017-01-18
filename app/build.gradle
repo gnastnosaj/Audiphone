@@ -39,5 +39,7 @@ dependencies {
     compile 'com.github.qiujuer:genius:2.4.1'
     compile 'com.github.claucookie.miniequalizer:library:1.0.0'
     compile 'com.h6ah4i.android.widget.verticalseekbar:verticalseekbar:0.6.0'
+    compile 'io.reactivex:rxjava:+'
+    compile 'io.reactivex:rxandroid:+'
     compile 'com.tbruyelle.rxpermissions:rxpermissions:+'
 }

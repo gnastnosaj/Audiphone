@@ -30,7 +30,10 @@ import net.qiujuer.genius.widget.GeniusSeekBar;
 import java.lang.reflect.Method;
 
 import es.claucookie.miniequalizerlibrary.EqualizerView;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by jasontsang on 2/29/16.
@@ -69,19 +72,31 @@ public class AudiphoneActivity extends AppCompatActivity {
         setContentView(R.layout.activity_audiphone);
 
         adWrapper = (FrameLayout) findViewById(R.id.ad_wrapper);
-        new RxPermissions(this).request(Manifest.permission.READ_PHONE_STATE).subscribe(new Action1<Boolean>() {
+        new RxPermissions(this).request(Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.INTERNET)
+                .observeOn(Schedulers.io()).map(new Func1<Boolean, Boolean>() {
             @Override
-            public void call(Boolean grant) {
+            public Boolean call(Boolean grant) {
                 if (grant) {
                     try {
                         Ads.init(AudiphoneActivity.this, "100048054", "b25704d7c3184e5f36e65b5cf941ec83");
                         Ads.preLoad("dc80c0c4318fc7994e9f82a157556903", Ads.AdFormat.banner);
-                        View bannerAdView = Ads.createBannerView(AudiphoneActivity.this, "dc80c0c4318fc7994e9f82a157556903");
-                        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                        adWrapper.addView(bannerAdView, layoutParams);
+                        return true;
                     } catch (Exception e) {
                         Log.e("AudiphoneActivity", "wandoujia ad error", e);
+                        return false;
                     }
+                }
+                return false;
+            }
+        }).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Boolean>() {
+            @Override
+            public void call(Boolean aBoolean) {
+                try {
+                    View bannerAdView = Ads.createBannerView(AudiphoneActivity.this, "dc80c0c4318fc7994e9f82a157556903");
+                    RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    adWrapper.addView(bannerAdView, layoutParams);
+                } catch (Exception e) {
+                    Log.e("AudiphoneActivity", "wandoujia ad error", e);
                 }
             }
         }, new Action1<Throwable>() {
